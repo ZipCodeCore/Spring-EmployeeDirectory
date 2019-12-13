@@ -11,6 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class DepartmentServiceTest {
@@ -62,5 +65,28 @@ public class DepartmentServiceTest {
         String response = service.getDepartmentName(givenId);
 
         Assert.assertEquals(expected,response);
+    }
+
+    @Test
+    public void testGetAllDepartments(){
+        Department departmentTest = new Department();
+        departmentTest.setDEPARTMENT_NAME("Test1");
+        departmentTest.setDEPARTMENT_ID(1L);
+        Department departmentTest2 = new Department();
+        departmentTest2.setDEPARTMENT_NAME("Test1");
+        departmentTest2.setDEPARTMENT_ID(2L);
+
+        List<Department> allDepartments = new ArrayList<>();
+        allDepartments.add(departmentTest);
+        allDepartments.add(departmentTest2);
+
+        BDDMockito
+                .given(repository.findAll())
+                .willReturn(allDepartments);
+
+        Integer expected = 2;
+        Integer actual = allDepartments.size();
+
+        Assert.assertEquals(expected,actual);
     }
 }
