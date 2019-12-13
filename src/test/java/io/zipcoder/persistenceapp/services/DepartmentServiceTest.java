@@ -26,7 +26,7 @@ public class DepartmentServiceTest {
 
 
     @Test
-    public void getDepartmentById() {
+    public void getDepartmentById() throws Exception{
         Long givenId = 1L;
         Department departmentTest = new Department();
         departmentTest.setDEPARTMENT_NAME("Marketing");
@@ -46,7 +46,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void getDepartmentName() {
+    public void getDepartmentName() throws Exception {
         Long givenId = 1L;
         String expected = "MARKETING";
         Department departmentTest = new Department();
@@ -68,7 +68,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void testGetAllDepartments(){
+    public void testGetAllDepartments() throws Exception{
         Department departmentTest = new Department();
         departmentTest.setDEPARTMENT_NAME("Test1");
         departmentTest.setDEPARTMENT_ID(1L);
