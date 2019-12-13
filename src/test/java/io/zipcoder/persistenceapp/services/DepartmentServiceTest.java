@@ -24,6 +24,22 @@ public class DepartmentServiceTest {
 
     @Test
     public void getDepartmentById() {
+        Long givenId = 1L;
+        Department departmentTest = new Department();
+        departmentTest.setDEPARTMENT_NAME("Marketing");
+        departmentTest.setDEPARTMENT_ID(givenId);
+
+        BDDMockito
+                .given(repository.findOne(givenId))
+                .willReturn(departmentTest);
+
+        BDDMockito
+                .given(repository.exists(givenId))
+                .willReturn(true);
+
+        Department response = service.getDepartmentById(givenId);
+
+        Assert.assertEquals(departmentTest,response);
     }
 
     @Test
@@ -34,9 +50,6 @@ public class DepartmentServiceTest {
         departmentTest.setDEPARTMENT_NAME(expected);
         departmentTest.setDEPARTMENT_ID(givenId);
 
-        BDDMockito
-                .given(repository.save(departmentTest))
-                .willReturn(departmentTest);
 
         BDDMockito
                 .given(repository.findOne(givenId))
