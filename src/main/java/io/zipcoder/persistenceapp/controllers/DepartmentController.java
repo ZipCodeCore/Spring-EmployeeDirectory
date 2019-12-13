@@ -43,6 +43,11 @@ public class DepartmentController {
         return new ResponseEntity<Department>(departmentService.updateDepartmentName(newData, id),HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Department> createDepartment(@RequestBody Department newDepartment){
+        return new ResponseEntity<Department>(departmentService.createDepartment(newDepartment),HttpStatus.CREATED);
+    }
+
 
     //   TODO
     // create a department

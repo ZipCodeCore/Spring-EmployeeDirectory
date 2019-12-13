@@ -48,6 +48,10 @@ public class DepartmentService {
         return departmentRepository.save(existingData);
     }
 
+    public Department createDepartment (Department newDepartment){
+        return departmentRepository.save(newDepartment);
+    }
+
     private void verifyDepartment(Long departmentId){
         if (departmentRepository.exists(departmentId)){
 
