@@ -3,6 +3,7 @@ package io.zipcoder.persistenceapp.controllers;
 import io.zipcoder.persistenceapp.entities.Department;
 import io.zipcoder.persistenceapp.repositories.DepartmentRepository;
 
+import io.zipcoder.persistenceapp.services.DepartmentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -58,6 +59,22 @@ public class DepartmentControllerTest {
 
     @Test
     public void testGetDepartmentName() throws Exception{
+        Department dept = new Department();
+        dept.setDEPARTMENT_ID(5L);
+        dept.setDEPARTMENT_NAME("Test");
 
+        BDDMockito
+                .given(repository.findOne(5L))
+                .willReturn(dept);
+
+        BDDMockito
+                .given(repository.exists(5L))
+                .willReturn(true);
+
+
+        this.mvc.perform(MockMvcRequestBuilders
+            .get("/api/department/5/name")
+        ) .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("Test"));
     }
 }
