@@ -26,15 +26,14 @@ public class DepartmentController {
         return new ResponseEntity<>(departmentService.getAllDepartments(), HttpStatus.OK);
     }
 
+    @GetMapping("{id}/name")
+    public String getDepartmentName (@PathVariable Long id){
+        return departmentService.getDepartmentName(id);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Department> getDepartmentById(@PathVariable Long id){
         return new ResponseEntity<Department>(departmentService.getDepartmentById(id),HttpStatus.OK);
-    }
-
-    @GetMapping("{id}/name")
-    public String getDepartmentName (@PathVariable Long id){
-        parseDepartmentData(getDepartmentById(id));
-        return departmentName;
     }
 
     @PutMapping("{id}")
@@ -42,15 +41,12 @@ public class DepartmentController {
         return new ResponseEntity<Department>(departmentService.updateDepartmentManager(newData, departmentId),HttpStatus.OK);
     }
 
-    private void parseDepartmentData(ResponseEntity<Department> department){
-        departmentName = department.getBody().getDEPARTMENT_NAME();
-        departmentManager = department.getBody().getDEPARTMENT_ID();
-    }
+
 
 
     //   TODO
     // create a department
     // update department with a new manager
     // change name of a department
-    // get department name
+
 }

@@ -19,7 +19,7 @@ public class Department {
     public Long getDEPARTMENT_ID() {
         return DEPARTMENT_ID;
     }
-
+    public void setDEPARTMENT_ID (Long id){ this.DEPARTMENT_ID = id;}
 
     public String getDEPARTMENT_NAME() {
         return DEPARTMENT_NAME;

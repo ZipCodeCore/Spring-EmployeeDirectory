@@ -25,6 +25,11 @@ public class DepartmentService {
         return departmentRepository.findOne(id);
     }
 
+    public String getDepartmentName(Long id){
+        verifyDepartment(id);
+        return getDepartmentById(id).getDEPARTMENT_NAME();
+    }
+
     public Department updateDepartmentManager(Department newData, Long ID){
 
         verifyDepartment(ID);
