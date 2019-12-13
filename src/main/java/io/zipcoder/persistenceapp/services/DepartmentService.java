@@ -1,6 +1,7 @@
 package io.zipcoder.persistenceapp.services;
 
 import io.zipcoder.persistenceapp.entities.Department;
+import io.zipcoder.persistenceapp.exceptions.ResourceNotFoundException;
 import io.zipcoder.persistenceapp.repositories.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,27 @@ public class DepartmentService {
     public Iterable<Department> getAllDepartments(){
         return departmentRepository.findAll();
     }
+
+    public Department getDepartmentById(Long id){
+        verifyDepartment(id);
+        return departmentRepository.findOne(id);
+    }
+
+    public Department updateDepartmentManager(Department newData, Long ID){
+
+        verifyDepartment(ID);
+
+        Department existingData = departmentRepository.findOne(ID);
+        existingData.setDEPARTMENT_MANAGER(newData.getDEPARTMENT_MANAGER());
+        return departmentRepository.save(existingData);
+    }
+
+    private void verifyDepartment(Long departmentId){
+        if (departmentRepository.exists(departmentId)){
+
+        } else {
+            throw new ResourceNotFoundException("Department not found!");
+        }
+    }
+
 }
