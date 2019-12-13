@@ -38,12 +38,13 @@ public class DepartmentController {
         return new ResponseEntity<Department>(departmentService.updateDepartmentManager(newData, id),HttpStatus.OK);
     }
 
-
+    @PutMapping("{id}/name")
+    public ResponseEntity<Department> updateDepartmentName(@RequestBody Department newData, @PathVariable Long id){
+        return new ResponseEntity<Department>(departmentService.updateDepartmentName(newData, id),HttpStatus.OK);
+    }
 
 
     //   TODO
     // create a department
-    // update department with a new manager
-    // change name of a department
 
 }

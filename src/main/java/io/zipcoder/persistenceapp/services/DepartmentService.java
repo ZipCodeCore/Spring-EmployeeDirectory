@@ -39,6 +39,15 @@ public class DepartmentService {
         return departmentRepository.save(existingData);
     }
 
+    public Department updateDepartmentName(Department newData, Long id){
+
+        verifyDepartment(id);
+
+        Department existingData = departmentRepository.findOne(id);
+        existingData.setDEPARTMENT_NAME(newData.getDEPARTMENT_NAME());
+        return departmentRepository.save(existingData);
+    }
+
     private void verifyDepartment(Long departmentId){
         if (departmentRepository.exists(departmentId)){
 
