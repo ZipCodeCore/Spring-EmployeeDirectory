@@ -3,13 +3,15 @@ package io.zipcoder.persistenceapp.controllers;
 import io.zipcoder.persistenceapp.entities.Employee;
 import io.zipcoder.persistenceapp.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/employee/")
 public class EmployeeController {
 
         EmployeeService employeeService;
@@ -19,9 +21,9 @@ public class EmployeeController {
             this.employeeService = employeeService;
         }
 
-        @GetMapping
-        public ResponseEntity<Iterable<Employee>> getAllEmployees(){
-            return null;
+        @GetMapping("{id}")
+        public ResponseEntity<Iterable<Employee>> getAllEmployeesUnderManager(@PathVariable Long id){
+            return new ResponseEntity<>(employeeService.getAllEmployeesUnderManager(id), HttpStatus.OK);
         }
 
     //   TODO
@@ -30,7 +32,6 @@ public class EmployeeController {
 
     * create employee
     * update employee to set their manager
-    * get a list of employees under a particular manager
     * get the entire hierarchy for an employee (manager, manager's manager..)
     * list of employees without a manager
     * list of employees under a particular department

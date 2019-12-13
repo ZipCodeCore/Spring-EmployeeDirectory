@@ -49,7 +49,4 @@ public class DepartmentController {
     }
 
 
-    //   TODO
-    // create a department
-
 }
