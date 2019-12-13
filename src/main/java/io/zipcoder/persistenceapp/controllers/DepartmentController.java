@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/department/")
 public class DepartmentController {
 
-    private String departmentName;
-    private Long departmentManager;
-
     DepartmentService departmentService;
 
     @Autowired
@@ -37,8 +34,8 @@ public class DepartmentController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Department> updateDepartmentManager(@RequestBody Department newData, @PathVariable Long departmentId){
-        return new ResponseEntity<Department>(departmentService.updateDepartmentManager(newData, departmentId),HttpStatus.OK);
+    public ResponseEntity<Department> updateDepartmentManager(@RequestBody Department newData, @PathVariable Long id){
+        return new ResponseEntity<Department>(departmentService.updateDepartmentManager(newData, id),HttpStatus.OK);
     }
 
 
