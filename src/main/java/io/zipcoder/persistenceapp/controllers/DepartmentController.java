@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/department/")
 public class DepartmentController {
 
+    private String departmentName;
+    private Long departmentManager;
 
     DepartmentService departmentService;
 
@@ -29,10 +31,22 @@ public class DepartmentController {
         return new ResponseEntity<Department>(departmentService.getDepartmentById(id),HttpStatus.OK);
     }
 
+    @GetMapping("{id}/name")
+    public String getDepartmentName (@PathVariable Long id){
+        parseDepartmentData(getDepartmentById(id));
+        return departmentName;
+    }
+
     @PutMapping("{id}")
     public ResponseEntity<Department> updateDepartmentManager(@RequestBody Department newData, @PathVariable Long departmentId){
         return new ResponseEntity<Department>(departmentService.updateDepartmentManager(newData, departmentId),HttpStatus.OK);
     }
+
+    private void parseDepartmentData(ResponseEntity<Department> department){
+        departmentName = department.getBody().getDEPARTMENT_NAME();
+        departmentManager = department.getBody().getDEPARTMENT_ID();
+    }
+
 
     //   TODO
     // create a department
