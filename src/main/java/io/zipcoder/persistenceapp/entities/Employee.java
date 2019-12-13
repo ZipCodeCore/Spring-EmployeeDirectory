@@ -18,7 +18,7 @@ public class Employee {
     private String TITLE;
     private String PHONE;
     private Date HIRE_DATE;
-    private Boolean MANAGER;
+    private Boolean MANAGER_ID;
     private Long DEPARTMENT_ID;
 
 
@@ -66,12 +66,12 @@ public class Employee {
         this.HIRE_DATE = HIRE_DATE;
     }
 
-    public Boolean getMANAGER() {
-        return MANAGER;
+    public Boolean getMANAGER_ID() {
+        return MANAGER_ID;
     }
 
-    public void setMANAGER(Boolean MANAGER) {
-        this.MANAGER = MANAGER;
+    public void setMANAGER_ID(Boolean MANAGER_ID) {
+        this.MANAGER_ID = MANAGER_ID;
     }
 
     public Long getDEPARTMENT_ID() {
