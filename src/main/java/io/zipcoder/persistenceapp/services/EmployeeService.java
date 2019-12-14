@@ -77,6 +77,16 @@ public class EmployeeService {
         return employeeRepository.save(newEmployee);
     }
 
+    public Employee updatedData (Employee newData, Long id){
+        Employee existingData = null;
+
+        if (verifyEmployeeExists(id)){
+            existingData = employeeRepository.findOne(id);
+            existingData.setMANAGER_ID(newData.getMANAGER_ID());
+        }
+        return employeeRepository.save(existingData);
+    }
+
 
     private Boolean verifyEmployeeExists(Long id) {
         if (employeeRepository.exists(id)) {

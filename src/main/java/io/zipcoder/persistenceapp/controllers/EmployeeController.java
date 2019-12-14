@@ -43,15 +43,20 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.createEmployee(newEmployee),HttpStatus.CREATED);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<Employee> updateManager (@RequestBody Employee updatedData, @PathVariable Long id){
+        return new ResponseEntity<>(employeeService.updatedData(updatedData, id),HttpStatus.OK);
+    }
+
 
     //   TODO
     /*
 
 
+   * update employee to set their manager
 
 
 
-    * update employee to set their manager
     * remove an employee
     * remove a list of employees
     * remove all employees from a department
