@@ -30,6 +30,17 @@ public class EmployeeService {
         return allEmployees;
     }
 
+    public Iterable<Employee> getAllEmployeesInDepartment (Long id){
+        verifyEmployeeExists(id);
+        List<Employee> allEmployees = new ArrayList<>();
+        for (Employee each : employeeRepository.findAll()){
+            if (each.getDEPARTMENT_ID()==id){
+                allEmployees.add(each);
+            }
+        }
+        return allEmployees;
+    }
+
     private void verifyEmployeeExists(Long id){
         if (employeeRepository.exists(id)){
 

@@ -21,20 +21,24 @@ public class EmployeeController {
             this.employeeService = employeeService;
         }
 
-        @GetMapping("{id}")
+        @GetMapping("allundermanager/{id}")
         public ResponseEntity<Iterable<Employee>> getAllEmployeesUnderManager(@PathVariable Long id){
             return new ResponseEntity<>(employeeService.getAllEmployeesUnderManager(id), HttpStatus.OK);
+        }
+
+        @GetMapping("allindepartment/{id}")
+        public ResponseEntity<Iterable<Employee>> getAllEmployeesInDepartment(@PathVariable Long id){
+            return new ResponseEntity<>(employeeService.getAllEmployeesInDepartment(id), HttpStatus.OK);
         }
 
     //   TODO
     /*
 
-
     * create employee
     * update employee to set their manager
     * get the entire hierarchy for an employee (manager, manager's manager..)
     * list of employees without a manager
-    * list of employees under a particular department
+
     * remove an employee
     * remove a list of employees
     * remove all employees from a department
