@@ -98,6 +98,12 @@ public class EmployeeService {
         return false;
     }
 
+    public Boolean deleteEmployeeByManager (Long id){
+        Iterable<Employee> employees = getAllEmployeesUnderManager(id);
+        employeeRepository.delete(employees);
+        return true;
+    }
+
 
     private Boolean verifyEmployeeExists(Long id) {
         if (employeeRepository.exists(id)) {

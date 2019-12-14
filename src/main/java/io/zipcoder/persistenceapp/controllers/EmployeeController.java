@@ -53,6 +53,11 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.deleteEmployee(id),HttpStatus.OK);
     }
 
+    @DeleteMapping("manager/{id}")
+    public ResponseEntity<Boolean> deleteEmployeeByManager(@PathVariable Long id){
+        return new ResponseEntity<>(employeeService.deleteEmployeeByManager(id),HttpStatus.OK);
+    }
+
     //   TODO
     /*
 
@@ -60,7 +65,7 @@ public class EmployeeController {
 
     * remove a list of employees
     * remove all employees from a department
-    * remove all employees under a particular manager
+
 
     * merge departments: given two department names eg: A and B, move the manager of B to report to the manager of A,
         and update all other employees to be members of department A
