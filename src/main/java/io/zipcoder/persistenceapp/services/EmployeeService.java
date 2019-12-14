@@ -41,6 +41,17 @@ public class EmployeeService {
         return allEmployees;
     }
 
+    public Iterable<Employee> getAllEmployeesNoManager (){
+        List<Employee> allEmployees = new ArrayList<>();
+        for (Employee each : employeeRepository.findAll()){
+            if (each.getMANAGER_ID()==null){
+                allEmployees.add(each);
+            }
+        }
+        return allEmployees;
+    }
+
+
     private void verifyEmployeeExists(Long id){
         if (employeeRepository.exists(id)){
 
