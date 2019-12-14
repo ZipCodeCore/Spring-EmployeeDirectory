@@ -36,15 +36,20 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.getAllEmployeesNoManager(), HttpStatus.OK);
     }
 
+    @GetMapping("hierarch/{id}")
+    public ResponseEntity<Iterable<Employee>> getHierarchy(@PathVariable Long id) {
+        return new ResponseEntity<>(employeeService.getHierarchy(id), HttpStatus.OK);
+    }
+
+
     //   TODO
     /*
 
 
+
+
     * create employee
     * update employee to set their manager
-    * get the entire hierarchy for an employee (manager, manager's manager..)
-
-
     * remove an employee
     * remove a list of employees
     * remove all employees from a department
