@@ -54,37 +54,48 @@ public class EmployeeService {
         return allEmployees;
     }
 
-    public Iterable<Employee> getHierarchy (Long id){
+    public Iterable<Employee> getHierarchy(Long id) {
         List<Employee> result = new ArrayList<>();
         Employee one = employeeRepository.findOne(id);
         result.add(one);
         Boolean topManager = false;
 
-        if (verifyEmployeeExists(id)){
-            while (!topManager){
-                if (one.getMANAGER_ID() == null){
+        if (verifyEmployeeExists(id)) {
+            while (!topManager) {
+                if (one.getMANAGER_ID() == null) {
                     topManager = true;
                 } else {
                     one = employeeRepository.findOne(one.getMANAGER_ID());
-                    result.add(one);
+                    if (one != null) {
+                        result.add(one); // needs logic if we delete the dept manager
+                    } else topManager = true;
+
                 }
             }
         }
         return result;
     }
 
-    public Employee createEmployee (Employee newEmployee){
+    public Employee createEmployee(Employee newEmployee) {
         return employeeRepository.save(newEmployee);
     }
 
-    public Employee updatedData (Employee newData, Long id){
+    public Employee updatedData(Employee newData, Long id) {
         Employee existingData = null;
 
-        if (verifyEmployeeExists(id)){
+        if (verifyEmployeeExists(id)) {
             existingData = employeeRepository.findOne(id);
             existingData.setMANAGER_ID(newData.getMANAGER_ID());
         }
         return employeeRepository.save(existingData);
+    }
+
+    public Boolean deleteEmployee(Long id) {
+        if (verifyEmployeeExists(id)) {
+            employeeRepository.delete(id);
+            return true;
+        }
+        return false;
     }
 
 

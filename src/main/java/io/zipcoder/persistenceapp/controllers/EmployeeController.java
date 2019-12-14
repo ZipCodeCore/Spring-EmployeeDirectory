@@ -48,16 +48,16 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.updatedData(updatedData, id),HttpStatus.OK);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Boolean> deleteEmployee (@PathVariable Long id){
+        return new ResponseEntity<>(employeeService.deleteEmployee(id),HttpStatus.OK);
+    }
 
     //   TODO
     /*
 
 
-   * update employee to set their manager
 
-
-
-    * remove an employee
     * remove a list of employees
     * remove all employees from a department
     * remove all employees under a particular manager
