@@ -5,10 +5,7 @@ import io.zipcoder.persistenceapp.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/employee/")
@@ -41,6 +38,11 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.getHierarchy(id), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Employee> createEmployee (@RequestBody Employee newEmployee){
+        return new ResponseEntity<>(employeeService.createEmployee(newEmployee),HttpStatus.CREATED);
+    }
+
 
     //   TODO
     /*
@@ -48,7 +50,7 @@ public class EmployeeController {
 
 
 
-    * create employee
+
     * update employee to set their manager
     * remove an employee
     * remove a list of employees

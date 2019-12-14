@@ -73,6 +73,10 @@ public class EmployeeService {
         return result;
     }
 
+    public Employee createEmployee (Employee newEmployee){
+        return employeeRepository.save(newEmployee);
+    }
+
 
     private Boolean verifyEmployeeExists(Long id) {
         if (employeeRepository.exists(id)) {
