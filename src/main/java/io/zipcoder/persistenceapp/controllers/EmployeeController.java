@@ -33,7 +33,7 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.getAllEmployeesNoManager(), HttpStatus.OK);
     }
 
-    @GetMapping("hierarch/{id}")
+    @GetMapping("hierarchy/{id}")
     public ResponseEntity<Iterable<Employee>> getHierarchy(@PathVariable Long id) {
         return new ResponseEntity<>(employeeService.getHierarchy(id), HttpStatus.OK);
     }
@@ -58,13 +58,18 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.deleteEmployeeByManager(id),HttpStatus.OK);
     }
 
+    @DeleteMapping("department/{id}")
+    public ResponseEntity<Boolean> deleteEmployeesByDepartment(@PathVariable Long id){
+        return new ResponseEntity<>(employeeService.deleteEmployeesByDepartment(id), HttpStatus.OK);
+    }
+
     //   TODO
     /*
 
 
 
     * remove a list of employees
-    * remove all employees from a department
+
 
 
     * merge departments: given two department names eg: A and B, move the manager of B to report to the manager of A,
