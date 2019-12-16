@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/employee/")
 public class EmployeeController {
@@ -63,17 +65,13 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.deleteEmployeesByDepartment(id), HttpStatus.OK);
     }
 
+    @PutMapping("mergedepartment/{deptfrom}/{deptto}")
+    public ResponseEntity<Iterable<Employee>> mergeDepartments(@PathVariable Long deptfrom, @PathVariable Long deptto){
+        return new ResponseEntity<>(employeeService.mergeDepartments(deptfrom,deptto),HttpStatus.OK);
+    }
+
     //   TODO
     /*
-
-
-
-    * remove a list of employees
-
-
-
-    * merge departments: given two department names eg: A and B, move the manager of B to report to the manager of A,
-        and update all other employees to be members of department A
 
     * remove all direct reports to a manager. Any employees previously managed by the deleted employees
         should now be managed by the next manager up the hierarchy.

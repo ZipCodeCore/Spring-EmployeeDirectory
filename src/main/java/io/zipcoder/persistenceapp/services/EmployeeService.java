@@ -117,6 +117,19 @@ public class EmployeeService {
         return false;
     }
 
+    public Iterable<Employee> mergeDepartments(Long fromDepartment, Long toDepartment){
+        if (verifyDepartmentExists(fromDepartment) && verifyDepartmentExists(toDepartment)){
+            Iterable<Employee> fromdepartment = getAllEmployeesInDepartment(fromDepartment);
+            if (fromdepartment != null){
+                for (Employee each : fromdepartment){
+                    each.setDEPARTMENT_ID(toDepartment);
+                }
+                return employeeRepository.save(fromdepartment);
+            }
+        }
+        return null;
+    }
+
 
     private Boolean verifyEmployeeExists(Long id) {
         if (employeeRepository.exists(id)) {
