@@ -1,5 +1,7 @@
 package io.zipcoder.persistenceapp.department;
 
+import io.zipcoder.persistenceapp.employee.Employee;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,12 +14,12 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long depId;
     private String depName;
-    private String depManager;
+    private Employee depManager;
 
     public Department() {
     }
 
-    public Department(Long depId, String depName, String depManager) {
+    public Department(Long depId, String depName, Employee depManager) {
         this.depId = depId;
         this.depName = depName;
         this.depManager = depManager;
@@ -39,11 +41,11 @@ public class Department {
         this.depName = depName;
     }
 
-    public String getDepManager() {
+    public Employee getDepManager() {
         return depManager;
     }
 
-    public void setDepManager(String depManager) {
+    public void setDepManager(Employee depManager) {
         this.depManager = depManager;
     }
 }

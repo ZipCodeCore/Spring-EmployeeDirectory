@@ -2,10 +2,8 @@ package io.zipcoder.persistenceapp.employee;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Employee {
@@ -18,9 +16,11 @@ public class Employee {
     private String title;
     private String phoneNumber;
     private String email;
-    private String hireDate;
-    private String managerName;
-    private Integer depNum;
+    private Date hireDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private Employee manager;
+//    private Integer depNum;
 
     public Employee() {
     }
@@ -31,9 +31,10 @@ public class Employee {
                     String title,
                     String phoneNumber,
                     String email,
-                    String hireDate,
-                    String managerName,
-                    Integer depNum) {
+                    Date hireDate,
+                    Employee manager
+//                    Integer depNum
+                    ) {
         this.employeeNum = employeeNum;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,8 +42,8 @@ public class Employee {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.hireDate = hireDate;
-        this.managerName = managerName;
-        this.depNum = depNum;
+        this.manager = manager;
+//        this.depNum = depNum;
     }
 
     public Long getEmployeeNum() {
@@ -93,27 +94,27 @@ public class Employee {
         this.email = email;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
-    public String getManagerName() {
-        return managerName;
+    public Employee getManager() {
+        return manager;
     }
 
-    public void setManagerName(String managerName) {
-        this.managerName = managerName;
+    public void setManager(Employee manager) {
+        this.manager = manager;
     }
 
-    public Integer getDepNum() {
-        return depNum;
-    }
-
-    public void setDepNum(Integer depNum) {
-        this.depNum = depNum;
-    }
+//    public Integer getDepNum() {
+//        return depNum;
+//    }
+//
+//    public void setDepNum(Integer depNum) {
+//        this.depNum = depNum;
+//    }
 }

@@ -30,9 +30,9 @@ public class DepartmentService {
     }
 
     // could integrate passing an Employee through name to update manager
-    public Department updateManager(Long id, String manager) {
+    public Department updateManager(Long id, Department department) {
         Department inDb = read(id);
-        inDb.setDepManager(manager);
+        inDb.setDepManager(department.getDepManager());
         inDb = repo.save(inDb);
         return inDb;
     }

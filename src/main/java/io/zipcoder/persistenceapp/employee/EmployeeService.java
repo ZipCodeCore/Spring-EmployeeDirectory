@@ -28,11 +28,11 @@ public class EmployeeService {
         return employees;
     }
 
-    public List<Employee> readOfManager(String managerName) {
+    public List<Employee> readOfManager(Employee managerName) {
         List<Employee> entireList = readAll();
         List<Employee> result = new ArrayList<>();
         entireList.forEach(employee -> {
-            if (employee.getManagerName().equals(managerName)) {
+            if (employee.getEmployeeNum().equals(managerName.getEmployeeNum())) {
                 result.add(employee);
             }
         });
@@ -51,11 +51,21 @@ public class EmployeeService {
         return inDb;
     }
 
-    public Employee updateManager(Long id, String newManager) {
+    public Employee updateManager(Long id, Employee newManager) {
         Employee inDb = read(id);
-        inDb.setManagerName(newManager);
+        inDb.setManager(newManager);
         inDb = repo.save(inDb);
         return inDb;
+    }
+
+    public Employee delete(Long id) {
+        Employee em = read(id);
+        repo.delete(id);
+        return em;
+    }
+
+    public Employee delete(Employee employee) {
+        return delete(employee.getEmployeeNum());
     }
 
 }
